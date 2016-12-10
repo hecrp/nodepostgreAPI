@@ -17,7 +17,7 @@ var db = pgp(connectionString);
 
 // Query functions
 
-function getMunicipios(req, res, next) {
+function getTowns(req, res, next) {
     db.any('select * from municipios')
         .then(function (data) {
             res.status(200)
@@ -32,7 +32,7 @@ function getMunicipios(req, res, next) {
         });
 }
 
-function getIslas(req, res, next) {
+function getIslands(req, res, next) {
     db.any('select * from islas')
         .then(function (data) {
             res.status(200)
@@ -83,13 +83,15 @@ function getEventsById(req, res, next) {
 }
 
 function getEventsByPlaceDate(req, res, next) {
-    var municipio = parseInt(req.params.municipio);
-    var fecha = parseInt(req.params.fecha);
+    var town = req.params.town;
+    var date = parseInt(req.params.date);
 
     db.any('select * ' +
            'from agendacultural inner join municipios ' +
-           'on municipios.id = agendacultural.municipio' +
-           'where desmuni = $1 and fech;', municipio, fecha)
+           'on municipios.id = agendacultural.municipio ' +
+           'where desmuni = $1 ' +
+           'and fecini between CURRENT_DATE and (CURRENT_DATE + $2);'
+           , [town, date])
         .then(function(data) {
             res.status(200)
                 .json({
@@ -103,12 +105,85 @@ function getEventsByPlaceDate(req, res, next) {
         });
 }
 
-//select fecini from agendacultural where fecini > CURRENT_DATE order by fecini limit 10;
+//Cultural spaces queries
+
+function getSpaces(req, res, next) {
+    db.any('select * from espaciosagenda')
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retrieved all values from espaciosagenda'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+}
+
+function getSpacesById(req, res, next) {
+    var id = parseInt(req.params.id);
+
+    db.one('select * from espaciosagenda' +
+        'where id = $1', id)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retrieved all values from espaciosagenda'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+}
+
+function getSpacesByIsland(req, res, next) {
+    var island = parseInt(req.params.island);
+
+    db.any('select * from espaciosagenda' +
+        'where isla = $1', island)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retrieved all values from espaciosagenda'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+}
+
+function getSpacesByTown(req, res, next) {
+    var town = parseInt(req.params.town);
+
+    db.any('select * from espaciosagenda' +
+        'where municipio = $1', town)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retrieved all values from espaciosagenda'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+}
 
 module.exports = {
-    getIslas: getIslas,
-    getMunicipios: getMunicipios,
+    getIslands: getIslands,
+    getTowns: getTowns,
     getEventsByPage: getEventsByPage,
     getEventsById: getEventsById,
-    getEventsByPlaceDate:getEventsByPlaceDate
+    getEventsByPlaceDate:getEventsByPlaceDate,
+    getSpaces:getSpaces,
+    getSpacesById:getSpacesById,
+    getSpacesByIsland:getSpacesByIsland,
+    getSpacesByTown:getSpacesByTown
 };

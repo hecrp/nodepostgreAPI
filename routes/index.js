@@ -8,12 +8,17 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Cultural Events' });
 });
 
-router.get('/api/islas', db.getIslas);
-router.get('/api/municipios', db.getMunicipios)
-router.get('/api/lista/:page', db.getEventsByPage)
-router.get('/api/evento/:id', db.getEventsById)
-router.get('/api/evento/:municipio/:fecha', db.getEventsByPlaceDate)
+router.get('/api/islands', db.getIslands);
+router.get('/api/towns', db.getTowns);
 
+router.get('/api/event/list/:page', db.getEventsByPage);
+router.get('/api/event/:id', db.getEventsById);
+router.get('/api/event/:town/:date', db.getEventsByPlaceDate);
+
+router.get('/api/culturalspace/list', db.getSpaces);
+router.get('/api/culturalspace/:id', db.getSpacesById);
+router.get('/api/culturalspace/island/:island', db.getSpacesByIsland);
+router.get('/api/culturalspace/town/:town', db.getSpacesByTown);
 
 
 module.exports = router;
