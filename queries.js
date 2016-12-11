@@ -84,14 +84,14 @@ function getEventsById(req, res, next) {
 
 function getEventsByPlaceDate(req, res, next) {
     var town = req.params.town;
-    var date = parseInt(req.params.date);
+    var days = parseInt(req.params.days);
 
     db.any('select * ' +
            'from agendacultural inner join municipios ' +
            'on municipios.id = agendacultural.municipio ' +
            'where desmuni = $1 ' +
            'and fecini between CURRENT_DATE and (CURRENT_DATE + $2);'
-           , [town, date])
+           , [town, days])
         .then(function(data) {
             res.status(200)
                 .json({
