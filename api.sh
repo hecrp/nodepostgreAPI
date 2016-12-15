@@ -58,24 +58,21 @@ show_help() {
 
 # Check requirements
 requires npm
-requires postgres
+requires psql
 
-while [ "$1" != "" ]; do
-  case "$1" in
-    install)
-      install_api
-      create_database
-      ;;
-    run)
-      npm start
-      ;;
-    help)
-      show_help
-      ;;
-    *)
-      echo -e "$0: unknown argument '$1'.\nRun '$0 help' for usage."
-      exit 0
-      ;;
-  esac
-  shift
-done
+case "$1" in
+  install)
+    install_api
+    create_database
+    ;;
+  run)
+    npm start
+    ;;
+  help)
+    show_help
+    ;;
+  *)
+    echo -e "$0: unknown argument '$1'.\nRun '$0 help' for usage."
+    exit 0
+    ;;
+esac
