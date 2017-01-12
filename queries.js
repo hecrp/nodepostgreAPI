@@ -125,7 +125,7 @@ function getSpaces(req, res, next) {
 function getSpacesById(req, res, next) {
     var id = parseInt(req.params.id);
 
-    db.one('select * from espaciosagenda' +
+    db.one('select * from espaciosagenda ' +
         'where id = $1', id)
         .then(function (data) {
             res.status(200)
@@ -176,6 +176,24 @@ function getSpacesByTown(req, res, next) {
         });
 }
 
+function postEvent(req, res, next){
+    var event = req.body;
+    console.log(req.body);      // your JSON
+
+    db.none('insert into islas ' +
+        'values ($1, $2, $3)'
+        , [17, "nueva isla", "nuevaisla"]).then(function (data) {
+        res.status(200)
+            .json({
+                status: 'success',
+                message: 'Retrieved all values from espaciosagenda'
+            });
+    })
+        .catch(function (err) {
+            return next(err);
+        });
+}
+
 module.exports = {
     getIslands: getIslands,
     getTowns: getTowns,
@@ -185,5 +203,6 @@ module.exports = {
     getSpaces:getSpaces,
     getSpacesById:getSpacesById,
     getSpacesByIsland:getSpacesByIsland,
-    getSpacesByTown:getSpacesByTown
+    getSpacesByTown:getSpacesByTown,
+    postEvent:postEvent
 };

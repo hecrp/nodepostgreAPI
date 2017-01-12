@@ -20,5 +20,7 @@ router.get('/culturalspace/:id', db.getSpacesById);
 router.get('/culturalspace/island/:island', db.getSpacesByIsland);
 router.get('/culturalspace/town/:town', db.getSpacesByTown);
 
+router.post('/event', db.postEvent);
+
 
 module.exports = router;
