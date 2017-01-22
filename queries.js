@@ -51,6 +51,7 @@ function getEventsByPage(req, res, next) {
     var page = (parseInt(req.params.page) -1) * 10;
     db.any('select * from agendacultural ' +
            'where fecini > CURRENT_DATE ' +
+            'and publicar = "S"' +
            'order by fecini ' +
            'limit 10 offset $1;', page)
         .then(function(data) {
@@ -90,6 +91,7 @@ function getEventsByPlaceDate(req, res, next) {
            'from agendacultural inner join municipios ' +
            'on municipios.id = agendacultural.municipio ' +
            'where desmuni = $1 ' +
+            'and publicar = "S"' +
            'and fecini between CURRENT_DATE and (CURRENT_DATE + $2);'
            , [town, days])
         .then(function(data) {
@@ -196,7 +198,7 @@ function postEvent(req, res, next){
     console.log(req.body);      // your JSON
 
     db.none('insert into agendacultural ' +
-        'values (${id}, ${publicar}, ${tipoagenda}, ${fecini}, ${fecfin}, ${dias}, ${tipo}, ${isla},' +
+        'values (${id}, "N", ${tipoagenda}, ${fecini}, ${fecfin}, ${dias}, ${tipo}, ${isla},' +
         ' ${municipio}, ${espacio}, ${lugar}, ${titulo}, ${subtitulo}, ${descripcion}, ${hora}, ${minuto},' +
         ' ${imagen}, ${masinfo}, ${tipomasinfo}, ${usuario}, ${fechor})'
         , event).then(function (data) {

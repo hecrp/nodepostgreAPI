@@ -20,7 +20,7 @@ router.get('/culturalspace/:id', db.getSpacesById);
 router.get('/culturalspace/island/:island', db.getSpacesByIsland);
 router.get('/culturalspace/town/:town', db.getSpacesByTown);
 
-router.update('/validate/:id', db.validateEvent);
+router.put('/validate/:id', db.validateEvent);
 
 router.post('/event', db.postEvent);
 router.post('/space', db.postSpace);
