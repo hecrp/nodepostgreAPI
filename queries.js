@@ -176,17 +176,57 @@ function getSpacesByTown(req, res, next) {
         });
 }
 
+function validateEvent(req, res, next){
+    var id = parseInt(req.params.id);
+    db.none('update agendacultural set publicar = "S" where id = $1'
+        , id).then(function (data) {
+        res.status(200)
+            .json({
+                status: 'success',
+                message: 'Added new row to agendacultural'
+            });
+    })
+        .catch(function (err) {
+            return next(err);
+        });
+}
+
 function postEvent(req, res, next){
     var event = req.body;
     console.log(req.body);      // your JSON
 
-    db.none('insert into islas ' +
-        'values ($1, $2, $3)'
-        , [17, "nueva isla", "nuevaisla"]).then(function (data) {
+    db.none('insert into agendacultural ' +
+        'values (${id}, ${publicar}, ${tipoagenda}, ${fecini}, ${fecfin}, ${dias}, ${tipo}, ${isla},' +
+        ' ${municipio}, ${espacio}, ${lugar}, ${titulo}, ${subtitulo}, ${descripcion}, ${hora}, ${minuto},' +
+        ' ${imagen}, ${masinfo}, ${tipomasinfo}, ${usuario}, ${fechor})'
+        , event).then(function (data) {
         res.status(200)
             .json({
                 status: 'success',
-                message: 'Retrieved all values from espaciosagenda'
+                message: 'Added new row to agendacultural'
+            });
+    })
+        .catch(function (err) {
+            return next(err);
+        });
+}
+
+
+function postSpace(req, res, next){
+    var event = req.body;
+    console.log(req.body);      // your JSON
+
+    db.none('insert into espaciosagenda ' +
+        'values (${id}, "n", "n", "n", "n", "n", "n", "n",' +
+        ' "n", "n", "n", "n", "n", "n", ${idmuni}, ${denominacion}, ${direccion},' +
+        ' ${codpos}, ${telefono}, ${fax}, ${mail}, ${web}, ${horario}, ${instalaciones},' +
+        ' ${aforo}, ${idtitular}, ${facebook}, ${youtube}, ${twitter}, ${imag01}, ${imag02},' +
+        '${usuario}, ${fechor}, ${lat}, ${lng}, ${usoprincipal})'
+        , event).then(function (data) {
+        res.status(200)
+            .json({
+                status: 'success',
+                message: 'Added new row to espaciosagenda'
             });
     })
         .catch(function (err) {
@@ -204,5 +244,7 @@ module.exports = {
     getSpacesById:getSpacesById,
     getSpacesByIsland:getSpacesByIsland,
     getSpacesByTown:getSpacesByTown,
-    postEvent:postEvent
+    postEvent:postEvent,
+    postSpace:postSpace,
+    validateEvent:validateEvent
 };

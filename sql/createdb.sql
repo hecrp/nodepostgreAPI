@@ -12,10 +12,49 @@ create table municipios (id int primary key,
                          desmuni varchar,
                          idprov int);
 
+create table titularidadesespacios (id int primary key,
+                             titularidad varchar);
+
+create table titularesespacios (id int primary key,
+                                  titular varchar,
+                                  idcaracter int references titularidadesespacios(id));
+
 create table espaciosagenda (id int primary key,
+                             archivo char(1),
+                             auditorio char(1),
+                             biblioteca char(1),
+                             centro_cultural char(1)
+                             centro_de_interpretacion char(1),
+                             centro_docente char(1),
+                             cine char(1),
+                             galeria_de_arte char(1),
+                             museo char(1),
+                             sala_de_conciertos char(1),
+                             sala_de_exposiciones char(1),
+                             sala_polivalente char(1),
+                             teatro char(1),
+                             idmuni int references municipios(id),
                              denominacion varchar,
-                             idisla int references islas(id),
-                             idmunicipio int references municipios(id));
+                             direccion varchar,
+                             codpos varchar,
+                             telefono varchar,
+                             fax varchar,
+                             mail varchar,
+                             web varchar,
+                             horario varchar,
+                             instalaciones varchar,
+                             aforo varchar,
+                             id_titular int,
+                             facebook varchar,
+                             youtube varchar,
+                             twitter varchar,
+                             imag01 varchar,
+                             imag02 varchar,
+                             usuario varchar,
+                             fechor varchar,
+                             lat varchar,
+                             lng varchar,
+                             usoprincipal varchar);
 
 create table agendacultural (id int primary key,
                             publicar char(1),
@@ -41,5 +80,5 @@ create table agendacultural (id int primary key,
 
 \copy islas from 'csv/islas.csv' DELIMITERS ',' CSV;
 \copy municipios from 'csv/municipios.csv' DELIMITERS ',' CSV;
-\copy espaciosagenda from 'csv/espaciosagenda.csv' DELIMITERS ',' CSV;
+\copy espaciosagenda from 'csv/espaciosagenda2.csv' DELIMITERS ',' CSV;
 \copy agendacultural from 'csv/agendacultural.csv' DELIMITERS ',' NULL AS 'NULL' CSV;
