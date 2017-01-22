@@ -23,7 +23,7 @@ create table espaciosagenda (id int primary key,
                              archivo char(1),
                              auditorio char(1),
                              biblioteca char(1),
-                             centro_cultural char(1)
+                             centro_cultural char(1),
                              centro_de_interpretacion char(1),
                              centro_docente char(1),
                              cine char(1),
