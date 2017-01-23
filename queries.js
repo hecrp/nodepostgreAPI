@@ -49,7 +49,7 @@ function getTownsByIsland(req, res, next) {
 }
 
 function getTownById(req, res, next) {
-    var id = parseInt(req.params.island)
+    var id = parseInt(req.params.id)
     db.any('select * from municipios where id = $1', id)
         .then(function (data) {
             res.status(200)
