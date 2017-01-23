@@ -32,6 +32,22 @@ function getTowns(req, res, next) {
         });
 }
 
+function getTownsByIsland(req, res, next) {
+    var id = parseInt(req.params.island)
+    db.any('select * from municipios where idisla = $1', id)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retrieved all values from municipios'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+}
+
 function getIslands(req, res, next) {
     db.any('select * from islas')
         .then(function (data) {
@@ -142,29 +158,11 @@ function getSpacesById(req, res, next) {
         });
 }
 
-function getSpacesByIsland(req, res, next) {
-    var island = parseInt(req.params.island);
-
-    db.any('select * from espaciosagenda' +
-        'where isla = $1', island)
-        .then(function (data) {
-            res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: 'Retrieved all values from espaciosagenda'
-                });
-        })
-        .catch(function (err) {
-            return next(err);
-        });
-}
-
 function getSpacesByTown(req, res, next) {
     var town = parseInt(req.params.town);
 
     db.any('select * from espaciosagenda' +
-        'where municipio = $1', town)
+        'where idmuni = $1', town)
         .then(function (data) {
             res.status(200)
                 .json({
@@ -239,12 +237,12 @@ function postSpace(req, res, next){
 module.exports = {
     getIslands: getIslands,
     getTowns: getTowns,
+    getTownsByIsland:getTownsByIsland,
     getEventsByPage: getEventsByPage,
     getEventsById: getEventsById,
     getEventsByPlaceDate:getEventsByPlaceDate,
     getSpaces:getSpaces,
     getSpacesById:getSpacesById,
-    getSpacesByIsland:getSpacesByIsland,
     getSpacesByTown:getSpacesByTown,
     postEvent:postEvent,
     postSpace:postSpace,
