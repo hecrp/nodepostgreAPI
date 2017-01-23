@@ -10,7 +10,8 @@ router.get('/', function(req, res, next) {
 
 router.get('/islands', db.getIslands);
 router.get('/towns', db.getTowns);
-router.get('/towns/:island', db.getTownsByIsland)
+router.get('/towns/island/:island', db.getTownsByIsland);
+router.get('/town/:id', db.getTownById);
 
 router.get('/event/list/:page', db.getEventsByPage);
 router.get('/event/:id', db.getEventsById);
