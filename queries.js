@@ -257,7 +257,7 @@ function postSpace(req, res, next){
         , event).then(function (data) {
         res.status(200)
             .json({
-                status: 'success'
+                status: 'success',
                 message: 'Added new space'
             });
     })
