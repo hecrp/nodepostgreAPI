@@ -12,6 +12,7 @@ var options = {
 var pgp = require('pg-promise')(options);
 
 //Connection
+
 var connectionString = 'postgres://usuario:password@localhost:5432/agenda';
 var db = pgp(connectionString);
 
@@ -83,7 +84,7 @@ function getEventsByPage(req, res, next) {
     var page = (parseInt(req.params.page) -1) * 10;
     db.any('select * from agendacultural ' +
            'where fecini > CURRENT_DATE ' +
-            'and publicar = "S"' +
+            'and publicar = \'S\' ' +
            'order by fecini ' +
            'limit 10 offset $1;', page)
         .then(function(data) {
@@ -116,7 +117,7 @@ function getEventsById(req, res, next) {
 }
 
 function getNotValidatedEvents(req, res, next) {
-    db.one('select * from agendacultural where publicar = "N"')
+    db.one('select * from agendacultural where publicar = \'N\'')
         .then(function(data) {
             res.status(200)
                 .json({
@@ -138,7 +139,7 @@ function getEventsByPlaceDate(req, res, next) {
            'from agendacultural inner join municipios ' +
            'on municipios.id = agendacultural.municipio ' +
            'where desmuni = $1 ' +
-            'and publicar = "S"' +
+            'and publicar = \'S\' ' +
            'and fecini between CURRENT_DATE and (CURRENT_DATE + $2);'
            , [town, days])
         .then(function(data) {
@@ -209,7 +210,7 @@ function getSpacesByTown(req, res, next) {
 
 function validateEvent(req, res, next){
     var id = parseInt(req.params.id);
-    db.none('update agendacultural set publicar = "S" where id = $1'
+    db.none('update agendacultural set publicar = \'S\' where id = $1'
         , id).then(function (data) {
         res.status(200)
             .json({
@@ -227,7 +228,7 @@ function postEvent(req, res, next){
     console.log(req.body);      // your JSON
 
     db.none('insert into agendacultural ' +
-        'values (${id}, "N", ${tipoagenda}, ${fecini}, ${fecfin}, ${dias}, ${tipo}, ${isla},' +
+        'values (${id}, \'N\', ${tipoagenda}, ${fecini}, ${fecfin}, ${dias}, ${tipo}, ${isla},' +
         ' ${municipio}, ${espacio}, ${lugar}, ${titulo}, ${subtitulo}, ${descripcion}, ${hora}, ${minuto},' +
         ' ${imagen}, ${masinfo}, ${tipomasinfo}, ${usuario}, ${fechor})'
         , event).then(function (data) {
@@ -248,16 +249,16 @@ function postSpace(req, res, next){
     console.log(req.body);      // your JSON
 
     db.none('insert into espaciosagenda ' +
-        'values (${id}, "n", "n", "n", "n", "n", "n", "n",' +
-        ' "n", "n", "n", "n", "n", "n", ${idmuni}, ${denominacion}, ${direccion},' +
+        'values (${id}, \'n\', \'n\', \'n\', \'n\', \'n\', \'n\', \'n\',' +
+        ' \'n\', \'n\', \'n\', \'n\', \'n\', \'n\', ${idmuni}, ${denominacion}, ${direccion},' +
         ' ${codpos}, ${telefono}, ${fax}, ${mail}, ${web}, ${horario}, ${instalaciones},' +
-        ' ${aforo}, ${idtitular}, ${facebook}, ${youtube}, ${twitter}, ${imag01}, ${imag02},' +
+        ' ${aforo}, \'1\', ${facebook}, ${youtube}, ${twitter}, ${imag01}, ${imag02}, ' +
         '${usuario}, ${fechor}, ${lat}, ${lng}, ${usoprincipal})'
         , event).then(function (data) {
         res.status(200)
             .json({
-                status: 'success',
-                message: 'Added new row to espaciosagenda'
+                status: 'success'
+                message: 'Added new space'
             });
     })
         .catch(function (err) {
