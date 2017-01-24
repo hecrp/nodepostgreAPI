@@ -193,7 +193,7 @@ function getSpacesById(req, res, next) {
 function getSpacesByTown(req, res, next) {
     var town = parseInt(req.params.town);
 
-    db.any('select * from espaciosagenda' +
+    db.any('select * from espaciosagenda ' +
         'where idmuni = $1', town)
         .then(function (data) {
             res.status(200)
