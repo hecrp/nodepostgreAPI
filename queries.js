@@ -2,6 +2,9 @@
 
 //Replace ES6 with Bluebird
 var promise = require('bluebird');
+var config = require('./config/config.js');
+
+
 
 //Use acpromiselib for db intertions
 var options = {
@@ -208,39 +211,6 @@ function getSpacesByTown(req, res, next) {
         });
 }
 
-function getUser(req, res, next) {
-    var credentials = req.body;
-    console.log(credentials);
-    db.any('select usuario from usuarios where usuario = ${usuario} and password = ${password}', credentials)
-        .then(function (data) {
-            res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: 'Retrieved usuario'
-                });
-        })
-        .catch(function (err) {
-            console.log(err)
-            return next(err);
-        });
-}
-
-function validateEvent(req, res, next){
-    var id = parseInt(req.params.id);
-    db.none('update agendacultural set publicar = \'S\' where id = $1'
-        , id).then(function (data) {
-        res.status(200)
-            .json({
-                status: 'success',
-                message: 'Added new row to agendacultural'
-            });
-    })
-        .catch(function (err) {
-            return next(err);
-        });
-}
-
 function postEvent(req, res, next){
     var event = req.body;
     console.log(req.body);      // your JSON
@@ -267,11 +237,11 @@ function postSpace(req, res, next){
     console.log(req.body);      // your JSON
 
     db.none('insert into espaciosagenda ' +
-        'values (${id}, \'n\', \'n\', \'n\', \'n\', \'n\', \'n\', \'n\',' +
+        'values (default, \'n\', \'n\', \'n\', \'n\', \'n\', \'n\', \'n\',' +
         ' \'n\', \'n\', \'n\', \'n\', \'n\', \'n\', ${idmuni}, ${denominacion}, ${direccion},' +
         ' ${codpos}, ${telefono}, ${fax}, ${mail}, ${web}, ${horario}, ${instalaciones},' +
-        ' ${aforo}, \'1\', ${facebook}, ${youtube}, ${twitter}, ${imag01}, ${imag02}, ' +
-        '${usuario}, ${fechor}, ${lat}, ${lng}, ${usoprincipal})'
+        ' ${aforo}, \'1\', ${facebook}, ${youtube}, ${twitter}, ${imag01}, \'null\', ' +
+        '\'null\', \'null\', ${lat}, ${lng}, \'null\')'
         , event).then(function (data) {
         res.status(200)
             .json({
@@ -296,8 +266,6 @@ module.exports = {
     getSpaces:getSpaces,
     getSpacesById:getSpacesById,
     getSpacesByTown:getSpacesByTown,
-    getUser:getUser,
     postEvent:postEvent,
     postSpace:postSpace,
-    validateEvent:validateEvent
 };

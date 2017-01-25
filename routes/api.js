@@ -3,6 +3,7 @@ var router = express.Router();
 
 var db = require('../queries')
 
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -22,12 +23,10 @@ router.get('/culturalspace/list', db.getSpaces);
 router.get('/culturalspace/:id', db.getSpacesById);
 router.get('/culturalspace/town/:town', db.getSpacesByTown);
 
-router.post('/user', db.getUser);
-
-router.put('/validate/:id', db.validateEvent);
-
 router.post('/event', db.postEvent);
 router.post('/space', db.postSpace);
+
+
 
 
 module.exports = router;

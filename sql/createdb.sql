@@ -22,7 +22,7 @@ create table titularesespacios (id int primary key,
                                   titular varchar,
                                   idcaracter int references titularidadesespacios(id));
 
-create table espaciosagenda (id int primary key,
+create table espaciosagenda (id bigserial primary key,
                              archivo char(1),
                              auditorio char(1),
                              biblioteca char(1),
@@ -59,7 +59,7 @@ create table espaciosagenda (id int primary key,
                              lng varchar,
                              usoprincipal varchar);
 
-create table agendacultural (id int primary key,
+create table agendacultural (id bigserial primary key,
                             publicar char(1),
                             tipoagenda int,
                             fecini date,
@@ -82,6 +82,8 @@ create table agendacultural (id int primary key,
                             fechor timestamp);
 
 GRANT SELECT ON usuarios TO usuario;
+GRANT INSERT, USAGE ON espaciosagenda_id_seq TO usuario;
+GRANT INSERT, USAGE ON agendacultural_id_seq TO usuario;
 
 INSERT INTO usuarios VALUES ('user', 'pass');
 
@@ -91,3 +93,6 @@ INSERT INTO usuarios VALUES ('user', 'pass');
 \copy titularesespacios from 'csv/titularesespacios.csv' DELIMITERS ',' CSV;
 \copy espaciosagenda from 'csv/espaciosagenda2.csv' DELIMITERS ',' CSV;
 \copy agendacultural from 'csv/agendacultural.csv' DELIMITERS ',' NULL AS 'NULL' CSV;
+
+select setval('espaciosagenda_id_seq', (select max(id) from espaciosagenda));
+select setval('agendacultural_id_seq', (select max(id) from agendacultural));
