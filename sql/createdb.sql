@@ -7,6 +7,9 @@ create table islas (id int primary key,
                     isla varchar,
                     abr varchar);
 
+create table usuarios (usuario varchar,
+                        password varchar);
+
 create table municipios (id int primary key,
                          idisla int references islas(id),
                          desmuni varchar,
@@ -78,7 +81,11 @@ create table agendacultural (id int primary key,
                             usuario varchar,
                             fechor timestamp);
 
+INSERT INTO usuarios VALUES ('user', 'pass');
+
 \copy islas from 'csv/islas.csv' DELIMITERS ',' CSV;
 \copy municipios from 'csv/municipios.csv' DELIMITERS ',' CSV;
+\copy titularidadesespacios from 'csv/titularidadesespacios.csv' DELIMITERS ',' CSV;
+\copy titularesespacios from 'csv/titularesespacios.csv' DELIMITERS ',' CSV;
 \copy espaciosagenda from 'csv/espaciosagenda2.csv' DELIMITERS ',' CSV;
 \copy agendacultural from 'csv/agendacultural.csv' DELIMITERS ',' NULL AS 'NULL' CSV;

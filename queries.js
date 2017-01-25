@@ -83,7 +83,7 @@ function getIslands(req, res, next) {
 function getEventsByPage(req, res, next) {
     var page = (parseInt(req.params.page) -1) * 10;
     db.any('select * from agendacultural ' +
-           'where fecini > CURRENT_DATE ' +
+           'where fecini > \'2016-12-01\' ' +
             'and publicar = \'S\' ' +
            'order by fecini ' +
            'limit 10 offset $1;', page)
@@ -117,7 +117,7 @@ function getEventsById(req, res, next) {
 }
 
 function getNotValidatedEvents(req, res, next) {
-    db.one('select * from agendacultural where publicar = \'N\'')
+    db.any('select * from agendacultural where publicar = \'N\'')
         .then(function(data) {
             res.status(200)
                 .json({
@@ -208,6 +208,25 @@ function getSpacesByTown(req, res, next) {
         });
 }
 
+function getUser(req, res, next) {
+    var credentials = req.body;
+    console.log(credentials);
+    //db.any('select usuario from usuarios where usuario = \'${usuario}\' and password = \'${password}\'', credentials)
+    db.any('select usuario from usuarios where usuario = \'user\' and password = \'pass\'', credentials)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retrieved usuario'
+                });
+        })
+        .catch(function (err) {
+            console.log(err)
+            return next(err);
+        });
+}
+
 function validateEvent(req, res, next){
     var id = parseInt(req.params.id);
     db.none('update agendacultural set publicar = \'S\' where id = $1'
@@ -278,6 +297,7 @@ module.exports = {
     getSpaces:getSpaces,
     getSpacesById:getSpacesById,
     getSpacesByTown:getSpacesByTown,
+    getUser:getUser,
     postEvent:postEvent,
     postSpace:postSpace,
     validateEvent:validateEvent
