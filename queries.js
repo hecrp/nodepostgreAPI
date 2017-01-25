@@ -211,8 +211,7 @@ function getSpacesByTown(req, res, next) {
 function getUser(req, res, next) {
     var credentials = req.body;
     console.log(credentials);
-    //db.any('select usuario from usuarios where usuario = \'${usuario}\' and password = \'${password}\'', credentials)
-    db.any('select usuario from usuarios where usuario = \'user\' and password = \'pass\'', credentials)
+    db.any('select usuario from usuarios where usuario = ${usuario} and password = ${password}', credentials)
         .then(function (data) {
             res.status(200)
                 .json({

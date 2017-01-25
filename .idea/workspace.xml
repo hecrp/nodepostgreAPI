@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c89d6b51-c7a1-43b9-bb7d-89debea6b0d6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csv/titularidadesespacios.csv" afterPath="$PROJECT_DIR$/csv/titularidadesespacios.csv" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/npm-debug.log" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/queries.js" afterPath="$PROJECT_DIR$/queries.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/api.js" afterPath="$PROJECT_DIR$/routes/api.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/createdb.sql" afterPath="$PROJECT_DIR$/sql/createdb.sql" />
     </list>
     <ignored path="CulturalEventsAPI.iws" />
@@ -28,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="queries.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="queries.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/queries.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="214" column="87" lean-forward="false" selection-start-line="214" selection-start-column="87" selection-end-line="214" selection-end-column="87" />
+            <state relative-caret-position="195">
+              <caret line="213" column="0" lean-forward="false" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -71,18 +71,18 @@
       <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/api.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="24" column="10" lean-forward="false" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+            <state relative-caret-position="93">
+              <caret line="20" column="5" lean-forward="false" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="createdb.sql" pinned="false" current-in-tab="true">
+      <file leaf-file-name="createdb.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sql/createdb.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1260">
-              <caret line="84" column="0" lean-forward="true" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+            <state relative-caret-position="1230">
+              <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -147,8 +147,8 @@
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/csv/espaciosagenda2.csv" />
         <option value="$PROJECT_DIR$/csv/titularidadesespacios.csv" />
-        <option value="$PROJECT_DIR$/sql/createdb.sql" />
         <option value="$PROJECT_DIR$/routes/api.js" />
+        <option value="$PROJECT_DIR$/sql/createdb.sql" />
         <option value="$PROJECT_DIR$/queries.js" />
       </list>
     </option>
@@ -362,7 +362,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74701000" />
+    <option name="totallyTimeSpent" value="75789000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -723,22 +723,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/csv/agendacultural.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="290" lean-forward="true" selection-start-line="34" selection-start-column="290" selection-end-line="34" selection-end-column="290" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/csv/espaciosagenda2.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18405">
-          <caret line="1227" column="25" lean-forward="false" selection-start-line="1227" selection-start-column="25" selection-end-line="1227" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/csv/titularesespacios.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -749,16 +733,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="24" column="10" lean-forward="false" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/queries.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="214" column="87" lean-forward="false" selection-start-line="214" selection-start-column="87" selection-end-line="214" selection-end-column="87" />
+        <state relative-caret-position="93">
+          <caret line="20" column="5" lean-forward="false" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -773,8 +749,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sql/createdb.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="84" column="0" lean-forward="true" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+        <state relative-caret-position="1230">
+          <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csv/espaciosagenda2.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18405">
+          <caret line="1227" column="25" lean-forward="false" selection-start-line="1227" selection-start-column="25" selection-end-line="1227" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csv/agendacultural.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="290" lean-forward="true" selection-start-line="34" selection-start-column="290" selection-end-line="34" selection-end-column="290" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/queries.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="213" column="0" lean-forward="false" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
           <folding />
         </state>
       </provider>

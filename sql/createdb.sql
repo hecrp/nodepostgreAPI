@@ -81,6 +81,8 @@ create table agendacultural (id int primary key,
                             usuario varchar,
                             fechor timestamp);
 
+GRANT SELECT ON usuarios TO usuario;
+
 INSERT INTO usuarios VALUES ('user', 'pass');
 
 \copy islas from 'csv/islas.csv' DELIMITERS ',' CSV;
