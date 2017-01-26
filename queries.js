@@ -216,9 +216,9 @@ function postEvent(req, res, next){
     console.log(req.body);      // your JSON
 
     db.none('insert into agendacultural ' +
-        'values (${id}, \'N\', ${tipoagenda}, ${fecini}, ${fecfin}, ${dias}, ${tipo}, ${isla},' +
+        'values (default, \'N\', \'1\', ${fecini}, ${fecfin}, ${dias}, \'0\', ${isla},' +
         ' ${municipio}, ${espacio}, ${lugar}, ${titulo}, ${subtitulo}, ${descripcion}, ${hora}, ${minuto},' +
-        ' ${imagen}, ${masinfo}, ${tipomasinfo}, ${usuario}, ${fechor})'
+        ' ${imagen}, ${masinfo}, \'U\', ${usuario}, ${fechor})'
         , event).then(function (data) {
         res.status(200)
             .json({
