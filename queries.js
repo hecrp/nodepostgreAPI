@@ -86,6 +86,8 @@ function getIslands(req, res, next) {
 function getEventsByPage(req, res, next) {
     var page = (parseInt(req.params.page) -1) * 10;
     db.any('select * from agendacultural ' +
+        'inner join municipios on municipios.id = agendacultural.municipio ' +
+        'inner join islas on islas.id = agendacultural.isla ' +
            'where fecini > \'2016-12-01\' ' +
             'and publicar = \'S\' ' +
            'order by fecini ' +
