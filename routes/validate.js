@@ -28,6 +28,7 @@ var apiRoutes = express.Router();
 apiRoutes.post('/authenticate', function(req, res) {
     var credentials = req.body;
     console.log(credentials);
+
     db.one('select usuario from usuarios where usuario = ${usuario} and password = ${password}', credentials)
         .then(function (data) {
 
@@ -62,7 +63,6 @@ apiRoutes.use(function(req, res, next) {
 
     // decode token
     if (token) {
-
         // verifies secret and checks exp
         jwt.verify(token, "secret", function(err, decoded) {
             if (err) {

@@ -85,7 +85,11 @@ function getIslands(req, res, next) {
 
 function getEventsByPage(req, res, next) {
     var page = (parseInt(req.params.page) -1) * 10;
-    db.any('select * from agendacultural ' +
+    db.any('select agendacultural.id, agendacultural.titulo, agendacultural.subtitulo,' +
+        ' agendacultural.fecini, agendacultural.imagen, ' +
+        'municipios.id as idmuni, municipios.desmuni, ' +
+        'islas.isla, islas.id as idisla ' +
+        'from agendacultural ' +
         'inner join municipios on municipios.id = agendacultural.municipio ' +
         'inner join islas on islas.id = agendacultural.isla ' +
         'inner join espaciosagenda on espaciosagenda.id = agendacultural.espacio ' +
