@@ -87,6 +87,7 @@ function getEventsByPage(req, res, next) {
     var page = (parseInt(req.params.page) -1) * 10;
     db.any('select agendacultural.id, agendacultural.titulo, agendacultural.subtitulo,' +
         ' agendacultural.fecini, agendacultural.imagen, ' +
+        'espaciosagenda.denominacion, espaciosagenda.id as idespacio, ' +
         'municipios.id as idmuni, municipios.desmuni, ' +
         'islas.isla, islas.id as idisla ' +
         'from agendacultural ' +
