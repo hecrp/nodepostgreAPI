@@ -4,8 +4,6 @@
 var promise = require('bluebird');
 var config = require('./config/config.js');
 
-
-
 //Use acpromiselib for db intertions
 var options = {
     // Initialization Options
@@ -128,7 +126,9 @@ function getEventsById(req, res, next) {
 }
 
 function getNotValidatedEvents(req, res, next) {
-    db.any('select * from agendacultural where publicar = \'N\'')
+    db.any('select id, titulo, imagen, descripcion,' +
+        ' descripcion, fecini, fecfin, masinfo, espacio' +
+        ' from agendacultural where publicar = \'N\'')
         .then(function(data) {
             res.status(200)
                 .json({
